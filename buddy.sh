@@ -1,4 +1,33 @@
-#sudo apt-get install sox || brew install sox
+
+#!/bin/sh
+# author: frickerg
+
+# update dependencies
+# sudo apt-get install sox || brew install sox
+
+# execute script in the project folder
+cd "$(dirname "$0")"
+
+# define text variables
+banner[0]="+-----------------------------------------------------------------------------+"
+banner[1]="|                                                                             |"
+banner[2]="| ███╗  ███╗ █████╗ █████╗ █████╗██████╗█████╗ ██╗  ██╗█████╗ █████╗ ██╗   ██╗|"
+banner[3]="| ████╗████║██╔══██╗██╔═██╗██╔══╝██╔═══╝██╔═██╗██║  ██║██╔═██╗██╔═██╗╚██╗ ██╔╝|"
+banner[4]="| ██╔███╔██║██║  ██║█████╔╝█████╗████╗  █████╔╝██║  ██║██║ ██║██║ ██║ ╚████╔╝ |"
+banner[5]="| ██║╚█╔╝██║██║  ██║██╔═██╗╚══██║██╔═╝  ██╔═██╗██║  ██║██║ ██║██║ ██║  ╚██╔╝  |"
+banner[6]="| ██║ ╚╝ ██║╚█████╔╝██║ ██║█████║██████╗█████╔╝╚█████╔╝█████╔╝█████╔╝   ██║   |"
+banner[7]="| ╚═╝    ╚═╝ ╚════╝ ╚═╝ ╚═╝╚════╝╚═════╝╚════╝  ╚════╝ ╚════╝ ╚════╝    ╚═╝   |"
+banner[8]="+-------------------------------+-----------------------------+---------------+"
+banner[9]="|  Developed by G. Fricker      |       Follow me on GitHub:  |   @frickerg   |"
+banner[10]="+-------------------------------+-----------------------------+---------------+"
+
+function banner {
+	for i in "${banner[@]}"
+	do
+		echo -e "$i"
+		sleep 0.1
+	done
+}
 
 # read resource file to know the morse alphabet
 while read -r line; do declare  "$line"; done <alphabet.res
@@ -28,18 +57,15 @@ f4='synthbeep 349.23'
 shortBeep='synthbeep 880'
 longBeep='synthbeep 420 0.5'
 
-echo 'testing...'
-
 # set synth mode to triangle
 mode=triangle
-
-# play testing sound
-$d4 && $d4 && $d5 && sleep 0.1 && $a4 && sleep 0.2
-$gs4 && sleep 0.1 && $g4 && sleep 0.1 && $f4_long && $d4 && $f4 && $g4
-
 clear
-echo 'ready!'
-sleep 1 && clear
+sleep 0.2
+
+# play intro song and display banner
+banner & ($d4 && $d4 && $d5 && sleep 0.1 && $a4 && sleep 0.2 && $gs4 && sleep 0.1 && $g4 && sleep 0.1 && $f4_long && $d4 && $f4 && $g4)
+sleep 1
+echo 'ready to go!'
 
 # set synth mode to sinus
 mode=sin
