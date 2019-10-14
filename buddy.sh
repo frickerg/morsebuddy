@@ -1,5 +1,8 @@
 #sudo apt-get install sox || brew install sox
 
+# read resource file to know the morse alphabet
+while read -r line; do declare  "$line"; done <alphabet.res
+
 # plays a tune on the sound card
 # param $1: frequency
 # param $2: duration (optional)
@@ -41,5 +44,6 @@ sleep 1 && clear
 # set synth mode to sinus
 mode=sin
 
-# test morse code sound
+# test morse code
 $shortBeep && $longBeep && $longBeep
+echo $a
