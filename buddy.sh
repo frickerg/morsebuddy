@@ -1,5 +1,5 @@
 
-#!/bin/sh
+#!/bin/bash
 # author: frickerg
 
 # update dependencies
@@ -70,30 +70,34 @@ echo 'ready to go!'
 # set synth mode to sinus
 mode=sin
 
-echo $morse_a
-
 function decode {
 	local var="morse_$1"
 	local decode_letter="${!var}"
-	echo -n "$decode_letter"
 	for (( j=0; j<${#decode_letter}; j++ ))
 	do
 		if [[ ${decode_letter:$j:1} == "." ]]
 		then
 			$shortBeep
+			echo -n "."
 		else
 			$longBeep
+			echo -n "-"
 		fi
 	done
 }
 
 while [[ $userinput != "exit" ]];
 do
-	read -p 'Enter your morse message: ' userinput
+	read -p 'Enter your text message: ' userinput
 	for (( i=0; i<${#userinput}; i++ )); do
-		decode ${userinput:$i:1}
-		echo -n " // "
+		current_letter=${userinput:$i:1}
+		decode $current_letter
+		if [[ "$current_letter" == " " ]]
+		then
+			echo -n "/"
+		fi
+		echo -n " "
 		sleep 1
 	done
-	echo ""
+	echo "//"
 done
