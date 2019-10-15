@@ -73,8 +73,18 @@ mode=sin
 echo $morse_a
 
 function decode {
-	var="morse_$1"
-	echo "${!var}"
+	local var="morse_$1"
+	local decode_letter="${!var}"
+	echo -n "$decode_letter"
+	for (( j=0; j<${#decode_letter}; j++ ))
+	do
+		if [[ ${decode_letter:$j:1} == "." ]]
+		then
+			$shortBeep
+		else
+			$longBeep
+		fi
+	done
 }
 
 while [[ $userinput != "exit" ]];
@@ -82,5 +92,8 @@ do
 	read -p 'Enter your morse message: ' userinput
 	for (( i=0; i<${#userinput}; i++ )); do
 		decode ${userinput:$i:1}
+		echo -n " // "
+		sleep 1
 	done
+	echo ""
 done
