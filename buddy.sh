@@ -24,13 +24,13 @@ banner[10]="+-------------------------------+-----------------------------+-----
 function banner {
 	for i in "${banner[@]}"
 	do
-		echo -e "$i"
+		echo "$i"
 		sleep 0.1
 	done
 }
 
 # read resource file to know the morse alphabet
-while read -r line; do declare  "$line"; done <alphabet.res
+while read -r line; do declare  "morse_$line"; done <alphabet.res
 
 # plays a tune on the sound card
 # param $1: frequency
@@ -70,6 +70,17 @@ echo 'ready to go!'
 # set synth mode to sinus
 mode=sin
 
-# test morse code
-$shortBeep && $longBeep && $longBeep
-echo $a
+echo $morse_a
+
+function decode {
+	var="morse_$1"
+	echo "${!var}"
+}
+
+while [[ $userinput != "exit" ]];
+do
+	read -p 'Enter your morse message: ' userinput
+	for (( i=0; i<${#userinput}; i++ )); do
+		decode ${userinput:$i:1}
+	done
+done
