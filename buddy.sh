@@ -37,10 +37,10 @@ function synthbeep {
 	if [ $play_sound == "true" ];then
 		if [ -z "$2" ];then
 			# only use one argument
-			play -q -n synth 0.1 $mode $1
+			play -nq -t alsa synth 0.1 $mode $1
 		else
 			# use the second argument as beep length
-			play -q -n synth $2 $mode $1
+			play -nq -t alsa synth $2 $mode $1
 		fi
 	fi
 }
