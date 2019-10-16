@@ -77,9 +77,9 @@ function decode {
 	local decode_letter="${!var}"
 	for (( j=0; j<${#decode_letter}; j++ ));do
 		if [[ ${decode_letter:$j:1} == "." ]];then
-			$shortBeep && echo -n "."
+			$shortBeep && printf "."
 		else
-			$longBeep && echo -n "-"
+			$longBeep && printf "-"
 		fi
 	done
 }
@@ -89,8 +89,8 @@ while true;do
 	if [[ $userinput == "exit" ]];then sleep 1 && printf "Thank you and have a --. .-. . .- - day!\n\n" && exit 1;fi
 	for (( i=0; i<${#userinput}; i++ ));do
 		current_letter=${userinput:$i:1} && decode $current_letter
-		if [[ "$current_letter" == " " ]];then echo -n "/";fi
-		echo -n " " && sleep 1
+		if [[ "$current_letter" == " " ]];then printf "/";fi
+		printf " " && sleep 1
 	done
 	printf "\n\n"
 done
