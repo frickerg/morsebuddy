@@ -36,7 +36,9 @@ Morsebuddy has been tested on Mac OS (Mojave and above) as well as on Linux Mint
 
 The sox package is not mandatory to run the program, but the auditive feedback you get with it makes the program infinite times more fun and is therefore dearly recommended!
 
-Please be advised that this package targets on`!/bin/bash` and does not work on `!/bin/sh`. Be sure to run the program by typing `bash buddy.sh` in the project directory and turn your speakers on.
+Please be advised that this package targets on`!/bin/bash` but should also work on `!/bin/sh`. If you are facing any difficulties when executing the program with`sh buddy.sh` just make sure to execute it with `bash buddy.sh` instead.
+
+Always run the program in your terminal. Navigating to the project directory is not necessary, you can run the script from anywhere. Turn your speakers on if you wanna have a good time.
 
 ## Parameters
 
@@ -44,10 +46,12 @@ You can trigger different behavior in morsebuddy with two additional parameters:
 
 - `--mute` deactivates the use of sound and therefore makes no use of the external sox package
 
-- `--update` automatically updates the sox package over brew or apt
+- `--update` automatically updates the sox package over brew or apt (might require root privilege)
 
 Only a single parameter can be used at once, you cannot use both params simultaneously. The default behavior (no params) will use the sox driver but does not install it automatically.
 
 ## Credits
 
 Developed by Guillaume Fricker in 2019 for the course **BTI7542 - Modern Linux** at the Bern University of Applied Sciences to get in touch with bash scripting. This program should only be used for educational purposes and does not guarantee full accuracy of information provided by its content. Should not be used for military purposes ;-)
+
+

@@ -1,10 +1,7 @@
-
 #!/bin/bash
 # author: frickerg
 
-# update dependencies
-# for using the soundcard, sox needs to be installed
-# if you do not want to use any external packages, use the param --mute when executing the script
+# for using the soundcard, sox needs to be installed. If you do not want to use any external packages, use the param --mute when executing the script
 # using the param --update will install/update the external packages (optional, but much more fun!)
 play_sound="true"
 if [ "$1" == "--mute" ];then play_sound="false" && printf "you have chosen to disable the sound function.\nno external packages will be used.\n";fi
@@ -58,12 +55,10 @@ f4_long='synthbeep 349.23 0.2'
 f4='synthbeep 349.23'
 
 # define the notes for the morse sounds
-shortBeep='synthbeep 880'
-longBeep='synthbeep 560 0.5'
+shortBeep='synthbeep 880' && longBeep='synthbeep 560 0.5'
 
 # set synth mode to triangle
-mode=triangle
-clear && sleep 0.2
+mode=triangle && clear && sleep 0.2
 
 # play intro song and display banner
 banner & ($d4 && $d4 && $d5 && sleep 0.1 && $a4 && sleep 0.2 && $gs4 && sleep 0.1 && $g4 && sleep 0.1 && $f4_long && $d4 && $f4 && $g4)
@@ -73,13 +68,25 @@ mode=sin
 
 # the decoding function to display text in morse code. also plays the beeping sound if sox is installed
 function decode {
-	local var="morse_$1"
+	character=$1
+	if [ ! -z "${character//[!0-9]/}" ];then character=n$character;fi
+	if [ "$character" == ")" ];then character="bracket_close";fi
+	if [ "$character" == "(" ];then character="bracket_open";fi
+	if [ "$character" == ":" ];then character="colon";fi
+	if [ "$character" == "," ];then character="comma";fi
+	if [ "$character" == "!" ];then character="exclamation_mark";fi
+	if [ "$character" == "." ];then character="full_stop";fi
+	if [ "$character" == "-" ];then character="hyphen";fi
+	if [ "$character" == '"' ];then character="quotation_mark";fi
+	if [ "$character" == "?" ];then character="question_mark";fi
+
+	local var="morse_$character"
 	local decode_letter="${!var}"
 	for (( j=0; j<${#decode_letter}; j++ ));do
 		if [[ ${decode_letter:$j:1} == "." ]];then
-			$shortBeep && echo -n "."
+			$shortBeep && printf "."
 		else
-			$longBeep && echo -n "-"
+			$longBeep && printf "-"
 		fi
 	done
 }
@@ -89,8 +96,8 @@ while true;do
 	if [[ $userinput == "exit" ]];then sleep 1 && printf "Thank you and have a --. .-. . .- - day!\n\n" && exit 1;fi
 	for (( i=0; i<${#userinput}; i++ ));do
 		current_letter=${userinput:$i:1} && decode $current_letter
-		if [[ "$current_letter" == " " ]];then echo -n "/";fi
-		echo -n " " && sleep 1
+		if [[ "$current_letter" == " " ]];then printf "/";fi
+		printf " " && sleep 1
 	done
 	printf "\n\n"
 done
