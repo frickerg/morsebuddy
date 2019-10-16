@@ -32,7 +32,7 @@ Morsebuddy comes in handy to easily translate your texts into that old school mo
 
 ## Prerequisites
 
-Morsebuddy has been tested on Mac OS (Mojave and above) as well as on Linux Mint 18+. If you want to update the sox driver automatically, a preinstalled apt or brew package manager is mandatory. You can also update sox in other UNIX based distros by installing sox manually over your own package manager.
+Morsebuddy has been tested on Mac OS Catalina as well as on Linux Mint 18. If you want to update the sox driver automatically, a preinstalled apt or brew package manager is mandatory. You can also update sox in other UNIX based distros by installing sox manually over your own package manager.
 
 The sox package is not mandatory to run the program, but the auditive feedback you get with it makes the program infinite times more fun and is therefore dearly recommended!
 
@@ -52,6 +52,4 @@ Only a single parameter can be used at once, you cannot use both params simultan
 
 ## Credits
 
-Developed by Guillaume Fricker in 2019 for the course **BTI7542 - Modern Linux** at the Bern University of Applied Sciences to get in touch with bash scripting. This program should only be used for educational purposes and does not guarantee full accuracy of information provided by its content. Should not be used for military purposes ;-)
-
-
+Developed by Guillaume Fricker in 2019 for the course **BTI7542 - Modern Linux** at the Bern University of Applied Sciences to get in touch with bash scripting. This program should only be used for educational purposes and does not guarantee full accuracy of information provided by its content. Should not be used for military purposes, but that's up to you ;-)
