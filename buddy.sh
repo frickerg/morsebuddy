@@ -31,16 +31,19 @@ function banner {
 # read resource file to know the morse alphabet
 while read -r line; do declare  "morse_$line"; done <resources/alphabet.res
 
+# detect environment
+if [ $(uname) == "Linux" ];then alsa_param="-t alsa";fi
+
 # plays a tune on the sound card
 # param $1: frequency, param $2: duration (optional)
 function synthbeep {
 	if [ $play_sound == "true" ];then
 		if [ -z "$2" ];then
 			# only use one argument
-			play -nq -t alsa synth 0.1 $mode $1
+			play -nq $alsa_param synth 0.1 $mode $1
 		else
 			# use the second argument as beep length
-			play -nq -t alsa synth $2 $mode $1
+			play -nq $alsa_param synth $2 $mode $1
 		fi
 	fi
 }
