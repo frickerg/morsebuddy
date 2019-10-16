@@ -30,7 +30,7 @@ function banner {
 }
 
 # read resource file to know the morse alphabet
-while read -r line; do declare  "morse_$line"; done <alphabet.res
+while read -r line; do declare  "morse_$line"; done <resources/alphabet.res
 
 # plays a tune on the sound card
 # param $1: frequency
@@ -99,5 +99,4 @@ do
 		echo -n " "
 		sleep 1
 	done
-	echo "//"
 done
