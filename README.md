@@ -26,7 +26,7 @@ Morse Code, however, is usually represented visually with lights (such as on shi
 
 Whomever is receiving the message will write down the dots and dashes as the transmitter sends them and leave small spaces between letters and slashes between words. Once the transmission is complete, the message can be deciphered with the help of a table, if necessary.
 
-Morsebuddy comes in handy to easily translate your texts into that old school morse code. Just write down your message in full text and morsebuddy will translate it into morse code. If you activate your soundcard using sox, morsebuddy will also play the morse sound corresponding to the letters in your text message!
+Morsebuddy comes in handy to easily translate your texts into that old school morse code. Just write down your message in full text (only supports lower-case, do not capitalize your letters) and morsebuddy will translate it into morse code. Some special characters are supported. If you activate your soundcard using sox, morsebuddy will also play the morse sound corresponding to the letters in your text message!
 
 *May the morse be with you.*
 
